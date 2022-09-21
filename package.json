@@ -1,5 +1,22 @@
 {
   "dependencies": {
-    "inquirer": "^9.1.2"
-  }
+    "inquirer": "^8.2.4"
+  },
+  "name": "portfolio-generator",
+  "description": "",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valkim55/portfolio-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/valkim55/portfolio-generator/issues"
+  },
+  "homepage": "https://github.com/valkim55/portfolio-generator#readme"
 }
