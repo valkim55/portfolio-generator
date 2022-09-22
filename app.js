@@ -32,10 +32,10 @@
 
 
 // // to access the methods of FS module, this declaration has to be present at the top of js file
-// const fs = require('fs');
+//const fs = require('fs');
  
 // // related statement - the expression needed to receive exported functions from the src file
-// const generatePage = require('./src/page-template.js');
+//const generatePage = require('./src/page-template');
 
 // //collecting command-line arguments and feeding them into the function to create a string with the user input
 // const profileDataArgs = process.argv.slice(2, process.argv.length);
@@ -76,9 +76,10 @@
 
 
 
+
+const fs = require('fs');
 const inquirer = require('inquirer');
-// const fs = require('fs');
-// const generatePage = require('./src/page-template);
+const generatePage = require('./src/page-template');
 
 const promptUser = () => {
     // the function returns the running of inquirer.prompt() - which is a promise. then promise will resolve with a .then() method
@@ -209,9 +210,32 @@ Add a New Project
     });
 };
 
+
+//temporary placeholder while working on other parts of code
+// const mockData = {
+//     name: 'Lernantino',
+//     github: 'lernantino',
+//     projects: []
+//   }
+
+
+
+
+
+
 // append .then() method to the function call, since the function returns a Promise, we put into .then() whatever we wish to take place after the Promise is resolved
 promptUser()
     .then(promptProject)
     .then(portfolioData => {
+        
+        // this console.log displays the questions and answers in the terminal
         console.log(portfolioData);
+        const pageHTML = generatePage(portfolioData);
+        //const pageHTML = generatePage(mockData);
+
+        // fs.writeFile ('./index.html', pageHTML, err => {
+            // if(err) throw new Error(err);
+
+            // console.log('Page created! Check out index.html in this directory to see it!');
+        //});
     });
