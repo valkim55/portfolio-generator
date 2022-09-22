@@ -86,17 +86,47 @@ const promptUser = () => {
         {
             type: 'input',
             name: 'name',
-            message: 'what is your name?'
+            message: 'what is your name? (required)',
+            validate: nameInput => {
+                if(nameInput) {
+                    return true;
+                } else {
+                    console.log('Please enter your name!');
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'github',
-            message: 'enter your GitHub username'
+            message: 'enter your GitHub username (required)',
+            validate: githubInput => {
+                if(githubInput) {
+                    return true;
+                } else {
+                    console.log('Please enter your github username');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'confirm',
+            name: 'confirmAbout',
+            message: 'Would you like to enter some confirmation about yourself for an "About" section?',
+            default: true
         },
         {
             type: 'input',
             name: 'about',
-            message: 'provide some information about yourself: '
+            message: 'provide some information about yourself: ',
+            // add when property to execute when the user answers yes or default to add info about themselves
+            when: ({confirmAbout}) => {
+                if(confirmAbout) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         }
     ])
 };
@@ -123,7 +153,15 @@ Add a New Project
         {
             type: 'input',
             name: 'description',
-            message: 'provide a description of the project (required)'
+            message: 'provide a description of the project (required)',
+            validate: descriptionInput => {
+                if(descriptionInput) {
+                    return true;
+                } else {
+                    console.log('Please enter your project description');
+                    return false;
+                }
+            }
         },
         {
             type: 'checkbox',
@@ -134,7 +172,15 @@ Add a New Project
         {
             type: 'input',
             name: 'link',
-            message: 'enter the GitHub link to your project (required)'
+            message: 'enter the GitHub link to your project (required)',
+            validate: linkInput => {
+                if(linkInput) {
+                    return true;
+                } else {
+                    console.log('Please provide the link to your project!');
+                    return false;
+                }
+            }
         },
         {
             type: 'confirm',
