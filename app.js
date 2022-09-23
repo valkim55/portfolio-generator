@@ -77,7 +77,8 @@
 
 
 
-const fs = require('fs');
+//const fs = require('fs');
+const {writeFile, copyFile} = require('./utils/generate-site.js');
 const inquirer = require('inquirer');
 const generatePage = require('./src/page-template');
 
@@ -228,14 +229,23 @@ promptUser()
     .then(promptProject)
     .then(portfolioData => {
         
-        // this console.log displays the questions and answers in the terminal
-        console.log(portfolioData);
-        const pageHTML = generatePage(portfolioData);
+        return generatePage(portfolioData);
         //const pageHTML = generatePage(mockData);
+    })
 
-        // fs.writeFile ('./index.html', pageHTML, err => {
-            // if(err) throw new Error(err);
+    .then(pageHTML => {
+        return writeFile(pageHTML);
+    })
 
-            // console.log('Page created! Check out index.html in this directory to see it!');
-        //});
+    .then(writeFileResponse => {
+        console.log(writeFileResponse);
+        return copyFile();
+    })
+
+    .then(copyFileResponse => {
+        console.log(copyFileResponse);
+    })
+
+    .catch(err => {
+        console.log(err);
     });
